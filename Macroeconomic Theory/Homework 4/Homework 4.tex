@@ -1,0 +1,263 @@
+\documentclass[12pt, letterpaper, parskip = full]{article}
+\usepackage[mmddyyyy]{datetime}
+
+\usepackage[utf8]{inputenc}
+\usepackage{amsmath}
+\usepackage{mathpazo}
+\usepackage{mathtools}
+\usepackage{eulervm}
+\usepackage[skip=10pt plus1pt]{parskip}
+
+\usepackage[margin=1in]{geometry}
+\linespread{1.20}
+\usepackage{enumerate}
+\usepackage{enumitem}
+\usepackage{listings}
+\usepackage[T1]{fontenc}
+\usepackage{amsfonts}
+\usepackage{amssymb}
+\usepackage{amsthm}
+\usepackage{multirow,array}
+\usepackage{graphicx}
+\usepackage{physics}
+\usepackage{bm}
+\usepackage{tikz}
+\usepackage{breqn}
+\usepackage[longnamesfirst]{natbib}
+\usepackage{comment}
+\usepackage{setspace}
+\usepackage{hyperref}
+\usepackage{accents}
+\usepackage{graphicx}
+\usepackage{float}
+\usepackage{fancyvrb}
+\VerbatimFootnotes
+
+\graphicspath{{Images/}}
+\setlength{\parindent}{0pt}
+
+\newtheorem{theorem}{Theorem}
+\newtheorem{corollary}{Corollary}
+\newtheorem{lemma}{Lemma}
+\newtheorem{definition}{Definition}
+\newtheorem{axiom}{Axiom}
+\newcommand{\e}{\mathrm{e}}
+\newcommand{\Var}{\mathrm{Var}}
+\newcommand{\Ex}[1]{\mathbb{E}\left[#1\right]}
+\renewcommand{\Pr}[1]{\mathbb{P}(#1)}
+\newcommand{\plim}{\mathrm{plim}}
+\newcommand{\pc}[1]{\frac{\dot{#1}(t)}{#1(t)}}
+\renewcommand\qedsymbol{$\blacksquare$}
+\newcommand{\ubar}[1]{\underaccent{\bar}{#1}}
+
+\title{Homework 4 \\ Macroeconomic Theory I}
+\author{Alejandro Flores-Brown}
+
+\begin{document}
+
+	\maketitle
+
+	Permanent link plus a code repository \href{https://github.com/AFB-TUV/Fall-2026/tree/main/Macro/Homework%204}{here}
+
+	\section{}
+
+	\subsection{}
+
+	In levels, we can write the flow budget constraint as
+
+	\[ B_{t+1} = (1+r_t) B_t - S_t    \]
+
+	Dividing by \(Y_t\), we have 
+
+	\[ \frac{B_{t+1}}{Y_t} = (1+r_t) \frac{B_t}{Y_t} - \frac{S_t}{Y_t}    \]
+
+	and multiplying the first by \(\frac{1+g}{1+g}\) we have
+
+	\[ \frac{(1+g) B_{t+1}}{(1+g) Y_t} = (1+g) \frac{B_{t+1}}{Y_{t+1}} = (1+r_t) \frac{B_t}{Y_t} - \frac{S_t}{Y_t}   \]
+
+	Then dividing through by \(1 +g\) we have
+
+	\[ \frac{B_{t+1}}{Y_{t+1}} = \frac{1+r_t}{1+g} - \frac{S_t}{(1+g) Y_t}    \]
+
+	which gives us an equation I am told is sufficient here:
+
+	\[ b_{t+1} = \frac{1+r_t}{1+g} b_t - \frac{s_t}{1+g}    \]
+
+	Plugging in the numbers given, the first set gives \(s = 2\%\) while the second set gives \(s = -0.5\%\) as the primary surpluses that fix debt for each allocation. The difference is that with the first allocation, the debt stock grows faster than the economy so the government needs to take money in to balance the budget, while with the second allocation, the economy is growing fast enough that the government can afford to run a small deficit each period. These changes will of course depend on the exact makeup of the economy and the debt stock -- because households do not have a fixed desire to hold capital, the interest rate will be determined in equilibrium and changing the quantity of debt will change the price.
+
+	\subsection{}
+
+	\subsubsection{}
+
+	We now construct a two-agent economy. Constrained agents can only eat what income they receive, and thus have utility 
+
+	\[ u(c_t) = u(y_t + T_t) \]  
+
+	where \(T_t\) represents total lump-sum transfers in period \(t\). Unconstrained agents can choose consumption and savings and thus solve
+
+	\[ \max_{c_1, c_2, a_1} u(c_1) + \beta u(c_2) - \lambda_1 \left[ c_1 + a_1 - y_1 - T_1 \right] - \lambda_2 \left[ c_2 - (1+r) a_2 - y_2 + (1+r) T   \right] \]
+
+	It will be helpful for later results to combine savings and lump-sum transfers:
+
+	\[ \max_{c_1, c_2, a_1} \mathcal{L} = u(c_1) + \beta u(c_2) - \lambda_1 \left[ c_1 + (a_1 - T) - y_1 \right] - \lambda_2 \left[ c_2 - (1+r) (a_2 - T) - y_2  \right] \]
+
+	This illustrates that lump-sum transfers are effectively a different form of saving for the unconstrained agent: because they are financed at the same rate \(1+r\) as savings, all they do for the unconstrained consumer is shift her savings decision to offset the transfer. This model yields the typical Euler equation, same as it would be if the government transfers were absent:
+
+	\[  \frac{u'(c_1)}{u'(c_2)} = \beta (1+r)      \]
+
+	This shows that the unconstrained agent's consumption will not change with \(T\). She will just shift her savings decision such that consumption is balanced across periods after taking the taxes into account. However, the constrained agent's consumption will increase and decrease in accordance with the lump-sum taxes, since she does not have access to saving or borrowing:
+
+	\begin{align*}
+	c_1 &= y_1 + T \\
+	c_2 &= y_2 - (1+r) T
+	\end{align*}
+
+	We now want to show what happens when \(T\) decreases by \(\triangle\) in period \(1\) and increases by \(\triangle\)\footnote{For some reason, I do not seem to be able to render \Verb"\Delta" in any font (it shows up as \(\Delta\)). I am using \Verb"\triangle" instead. This annoys me, but it's obviously inconsequential.} in period \(2\). Let us denote the old aggregate consumption in each period as \(C_t\) and the new aggregate consumption as \(C'_t\).  Let us also assume without loss of generality that \(\beta (1+r) = 1\) so that for the unconstrained consumer, \(u'(c_1) = u'(c_2) \implies c_1 = c_2 \equiv c\). (This does not change the result, but it makes it so we have to write slightly less). Then we can write per-period aggregate consumption as 
+	\begin{align*}
+	C_1 &= (1 - \mu) c + \mu (y_1 + T) \\
+	C'_1 &= (1 - \mu) c + \mu (y_1 + T + \triangle) \\
+	C_2 &= (1 - \mu) c + \mu (y_2 - (1+r) T) \\
+	C'_2 &= (1 - \mu) c + \mu (y_2 - (1+r) T - (1+r) \triangle)
+	\end{align*}
+	Inspection shows that the change in aggregate consumption is given by
+	\begin{align*}
+	\triangle C_1 &= \mu \triangle \\
+	\triangle C_2 &= - \mu (1+r) \triangle
+	\end{align*}
+	
+	as required.
+
+	\subsubsection{}
+
+	Ricardian equivalence as shown on the slides requires that the flow budget constraints be linked period-by-period. However, this implicitly requires that the household has a way to transfer income across periods! With the borrowing constraint, we see that the lump-sum tax-and-transfer effectively serves as a savings instrument for the constrained consumer: it shows up where the net savings after transfers \(a_t - T\) does for the unconstrained consumer, meaning the government effectively picks an asset position for the constrained household via the tax system. For a positive \(T\), this is equivalent to the household taking out a loan in period \(1\) repaid in period \(2\).
+
+	\subsubsection{}
+
+	Under a lump-sum tax, the only thing that changes for the household is its period-by-period resources; since all the government does here is redistribute income across time instead of transferring income between populations, the lifetime resource constraint does not change, and so the decisions for unconstrained consumers do not change. However, a proportional labor tax would further break Ricardian equivalence because it would alter the labor decision, making workers alter their hours choice because they are compensated less per hour of work. This would in turn change the worker's total resources and thus change the total income in the economy, and thus alter the tax revenue.
+	
+	\section{}
+
+	The representative household solves
+
+	\[ \max_{c_t, h_t, k_{t+1}} \beta^t \left( \ln(c_t) + \alpha \ln(1 - h_t) \right)     \]
+
+	subject to the period-by-period budget constraint 
+
+	\[ c_t + k_{t+1} = (1 - \tau) w_t h_t + (1 + r - \delta) k_t  \]
+
+	Taking first-order conditions, we have:
+
+	\begin{align*}
+	0 &= \beta^t \frac{1}{c_t} - \beta^t \lambda_t \\
+	0 &= - \beta^t \alpha \frac{1}{1 - h_t} + \beta^t (1 - \tau) w_t \lambda_t \\
+	0 &= - \beta^t \lambda_t + \beta^{t+1} \lambda_{t+1} (1 + r - \delta)
+	\end{align*}
+
+	We will only need the first two first-order conditions for this problem. Rearranging the first for \(w_t\), we have
+	\[ w_t = \frac{\alpha c_t }{(1 - h_t) (1 - \tau)}  \]
+	Now we need to equate this to the wage determined by the marginal product of labor for the representative firm:
+	\[ w_t = (1 - \theta) A \left(\frac{k_t}{h_t}\right)^\theta = \frac{\alpha c_t}{(1 - h_t)(1-\tau)}  \] 
+	We now write total output as \(y = A k^\theta h^{1-\theta} = A \left(\frac{k_t}{h_t}\right)^\theta h \), which lets us rewrite this equation as 
+	\[ (1 - \theta) \frac{y_t}{h_t} = \frac{\alpha c_t}{(1 - h_t)(1 - \tau)}    \] 
+	We now want to solve for \(h_t\). Multiplying both sides to remove the denominators, we have
+	\[ (1 - \theta) y_t (1 - h_t) (1 - \tau) = \alpha c_t h_t = (1 - \theta)(1 - \tau) y_t - (1 - \theta)(1 - \tau) y_t h_t       \]
+	Moving \(h_t\) to one side and dividing, we have
+	\[ h_t = \frac{(1 - \tau)(1 - \theta) y_t}{(1 - \theta)(1 - \tau) y_t + \alpha c_t}   \]
+	and then we divide the top and bottom by \(y_t\) to get 
+	\[ h_t = \frac{(1 - \tau)(1 - \theta)}{(1 - \tau)(1 - \theta) + \alpha \frac{c_t}{y_t}}   \]
+	as required.
+
+	Plugging in the numbers given, we find an hours ratio of about \(0.73\), so the high-labor-tax economy's workers only work about three-fourths the hours of the low-labor-tax economy's workers.
+
+	The uncompensated wage elasticity of log-log preferences is zero, but this elasticity is not uncompensated: the labor tax is rebated to the worker in its entirety! The lack of change in lifetime resources means the worker only feels work becoming relatively less worth it, which means the worker only substitutes away from work. If the revenue were instead lit on fire so the worker did not receive anything, we would expect the income and substitution effects to cancel. If instead the revenue were spent on transfers decreasing in labor hours, we would expect to see an even more extreme hours decrease in response to the labor tax since the worker would want to decrease her working hours to receive the transfer.
+
+	\section{}
+
+	\subsection{}
+
+	We can write the Lagrangian of this problem as
+
+	\[ \mathcal{L} = \sum \beta^t \ln(c_t) - \beta^t \lambda_t \left[ c_t + k_{t+1} - (1 - \tau) r_t k_t - w_t - T_t \right]    \]
+	
+	Taking first-order conditions, we find 
+
+	\begin{align*}
+	\lambda_t &= \frac{1}{c_t} \\
+	\lambda_t &= \beta r_{t+1} (1 - \tau) \lambda_{t+1}
+	\end{align*}
+
+	This obviously solves to \( c_{t+1} = \beta r_{t+1} (1 - \tau) c_t \). We now want to derive a relationship between \(c\) and \(k\) to go further, which means
+
+	\[ c_t = k_t^\theta - k_{t+1}   \]
+
+	We can get here either by observing that \(c_t + k_{t+1}\) must sum to the whole income in the economy, or by manually substituting for \(r_t\), \(w_t\), and \(T_t\) in the budget constraint and observing that the resulting sum is \(k_t^\theta\). Now we guess that \(k_{t+1} = s k_t^\theta\), which gives us
+
+	\[ c_t = (1 - s) k_t^\theta   \]
+
+	Substituting this back into the Euler equation we derived earlier, we find 
+
+	\[ (1 - s) k_{t+1}^\theta = \beta r_{t+1} (1 - \tau) (1 - s) k_{t}^\theta    \]
+
+	We cancel the \(1-s\) term on each side and then substitute for \(r_{t+1}\). This gives us
+
+	\[ k_{t+1}^\theta = \beta \theta (1 - \tau) k_t^\theta k_{t+1}^{\theta - 1}    \]
+
+	which rearranges to 
+
+	\[ k_{t+1} = \beta \theta (1 - \tau) k_t^\theta    \]
+
+	We now substitute for \(k_{t+1}\) and get
+
+	\[ s k_t^\theta = \beta \theta (1 - \tau) k_t^\theta    \]
+
+	which solves to \(s = \beta \theta (1 - \tau)\) like we want. 
+
+	We can then look at the steady-state values, though these are easy: we see from our successful guess that 
+	
+	\[k_{t+1} = s k_t^\theta \implies k = s k^\theta \implies k = s^{\frac{1}{1 - \theta}} \]
+
+	and we can easily rearrange the equation for consumption to get
+
+	\[ c_t = (1 - s) k_t^\theta \implies c = (1 - s) k^\theta    \]
+
+	in steady-state. We can also take logs of the guess and derive the exact relationship
+
+	\[ k_{t+1} = s k_t \implies \ln(k_{t+1}) = \ln(s) + \ln(k_t)    \]
+
+	for \(s, k > 0\), which should always be the case.
+
+	\subsection{}
+
+	We now hit the economy with an unanticipated tax decrease from \(\tau = 0.2\) to \(\tau = 0.0\). 
+
+	\begin{figure}[H]
+	\centering
+	\includegraphics[scale=0.38]{k_plot_cf.png}
+	\includegraphics[scale=0.38]{c_plot_cf.png}
+	\end{figure}
+
+	While capital accumulates monotonically from \(t = 0\), we see that consumption immediately drops about \(-9.55\%\). This is because the representative agent needs to temporarily move income from consumption to saving to increase her capital accumulation so she can move to the new desired level of capital.
+
+	\subsection{}
+
+	The transition as computed by the algorithm we discussed in class is implemented here:
+
+	\begin{figure}[H]
+	\centering
+	\includegraphics[scale=0.38]{k_plot_iter.png}
+	\includegraphics[scale=0.38]{c_plot_iter.png}
+	\end{figure}
+
+	The consumption difference is about \(7 \times 10^{-11}\) and the capital difference is about \(9 \times 10^{-11}\), so clearly the computed solution follows the closed-form prediction up to some numerical error, converging in \(297\) iterations.
+
+	I then tried three more configurations: without the negativity guard, without the dampening, and without either. The run without the negativity guard worked completely as expected, converging in the same number of iterations and producing the same result. Removing dampening, however, resulted in the computation never converging at all!
+
+	\begin{figure}[H]
+	\centering
+	\includegraphics[scale=0.38]{k_plot_bad.png}
+	\includegraphics[scale=0.38]{c_plot_bad.png}
+	\end{figure}
+
+	Some further experimentation reveals that the convergence failure happens for some \(\xi > 0.36\). Finally, the run without either the guard or the dampening failed within three iterations when the computer tried and failed to raise a negative number to a power without complex numbers enabled.
+
+\end{document}
