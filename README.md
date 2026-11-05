@@ -1,1 +1,3 @@
 # Public Portfolio
+
+This repository is meant to contain documents supporting my applications to predoctoral positions in economics, finance, and related fields. This primarily contains assignments and code from the second semester of Temple's graduate sequence in macroeconomics, but I will also attempt to include older work that demonstrates different aspects of my abilities when I discover it in old files. I also have included a virtual copy of my current resume.
